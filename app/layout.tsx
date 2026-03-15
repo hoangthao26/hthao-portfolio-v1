@@ -13,9 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hoang Thao | Frontend & SAP Developer",
+  title: "Hoàng Thao | Portfolio",
+  icons: { icon: "/logo/HT_logo.png", apple: "/logo/HT_logo.png" },
   description:
-    "Portfolio of Hoang Thao — Information Technology graduate specializing in SAP ABAP development and modern frontend applications with React, Next.js, and React Native.",
+    "Portfolio of Phan Đỗ Hoàng Thao — Final-year Software Engineering student at FPT University, specializing in SAP Technical development (ABAP, RAP, Fiori) and modern frontend applications with React, Next.js, and React Native.",
   keywords: [
     "Hoang Thao",
     "Frontend Developer",

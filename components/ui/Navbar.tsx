@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "Home",         href: "#hero",         id: "hero" },
@@ -14,21 +15,26 @@ const NAV_LINKS = [
   { label: "Contact",      href: "#contact",      id: "contact" },
 ];
 
+const NAV_IDS = NAV_LINKS.map((l) => l.id);
+
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState(ids[0]);
   useEffect(() => {
     const onScroll = () => {
-      const trigger = window.scrollY + window.innerHeight * 0.28;
+      const threshold = window.innerHeight * 0.35;
       let current = ids[0];
       for (const id of ids) {
         const el = document.getElementById(id);
-        if (el && el.offsetTop <= trigger) current = id;
+        if (el && el.getBoundingClientRect().top <= threshold) {
+          current = id;
+        }
       }
       setActive(current);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    const scrollEl = document.body;
+    scrollEl.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => scrollEl.removeEventListener("scroll", onScroll);
   }, [ids]);
   return active;
 }
@@ -39,15 +45,15 @@ export default function Navbar() {
   const [shimmerPos,    setShimmerPos]    = useState({ x: 50, y: 50 });
 
   const headerRef = useRef<HTMLElement>(null);
-  const active = useActiveSection(NAV_LINKS.map((l) => l.id));
+  const active = useActiveSection(NAV_IDS);
 
   /* Scroll → glass intensity + progress */
   useEffect(() => {
     const fn = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(document.body.scrollTop > 40);
     };
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
+    document.body.addEventListener("scroll", fn, { passive: true });
+    return () => document.body.removeEventListener("scroll", fn);
   }, []);
 
   /* Body scroll-lock when drawer open */
@@ -92,7 +98,7 @@ export default function Navbar() {
           maxWidth:   "100vw",
           overflow:   "hidden",
           boxSizing:  "border-box",
-          padding:    "10px 14px",
+          padding:    "10px 14px 14px 14px",
         }}
       >
         {/* ── Outer glow halo (behind the pill) ── */}
@@ -264,11 +270,11 @@ export default function Navbar() {
                       display:         "flex",
                       alignItems:      "center",
                       justifyContent:  "center",
+                      overflow:        "hidden",
                       boxShadow:       "inset 0 1px 0 rgba(255,255,255,0.18), 0 4px 14px rgba(139,92,246,0.35)",
-                      backdropFilter:  "blur(8px)",
                     }}
                   >
-                    <span style={{ fontSize: 12, fontWeight: 800, color: "#d4b8ff", letterSpacing: "-0.02em" }}>HT</span>
+                    <Image src="/logo/HT_logo.png" alt="HT Logo" width={24} height={24} style={{ objectFit: "contain"}} unoptimized />
                   </div>
                 </div>
                 <span style={{ fontSize: 15, fontWeight: 600, color: "rgba(255,255,255,0.92)", whiteSpace: "nowrap", letterSpacing: "-0.015em" }}>
@@ -359,7 +365,7 @@ export default function Navbar() {
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
                 {/* Download CV — liquid glass button */}
                 <a
-                  href="/cv.pdf"
+                  href="/cv/cv_phandohoangthao.pdf"
                   download
                   className="hidden lg:flex items-center gap-1.5 group"
                   style={{
@@ -579,7 +585,7 @@ export default function Navbar() {
               {/* Bottom CTA */}
               <div style={{ padding: "16px", borderTop: "1px solid rgba(139,92,246,0.10)", flexShrink: 0 }}>
                 <a
-                  href="/cv.pdf"
+                  href="/cv/cv_phandohoangthao.pdf"
                   download
                   onClick={() => setMobileOpen(false)}
                   style={{

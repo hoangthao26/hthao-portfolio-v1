@@ -10,6 +10,7 @@ import CertificatesSection from "@/components/sections/CertificatesSection";
 import ResumeSection from "@/components/sections/ResumeSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/ui/Footer";
+import PageLoader from "@/components/ui/PageLoader";
 
 /* CosmicBackground is entirely browser-side (Three.js + Canvas APIs) */
 const CosmicBackground = dynamic(
@@ -20,9 +21,10 @@ const CosmicBackground = dynamic(
 export default function Home() {
   return (
     <>
+      <PageLoader />
       <CosmicBackground />
       <Navbar />
-      <main className="relative z-10 overflow-x-hidden">
+      <main className="relative z-10">
         <HeroSection />
         <AboutSection />
         <SkillsSection />

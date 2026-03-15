@@ -54,37 +54,6 @@ function useTypewriter(words: string[], speed = 75, pause = 2200) {
   return displayed;
 }
 
-/* ── Stat badge ──────────────────────────────────────────────────── */
-function StatBadge({ value, label, delay }: { value: string; label: string; delay: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.06, y: -2 }}
-      style={{
-        display:        "flex",
-        flexDirection:  "column",
-        alignItems:     "center",
-        padding:        "10px 18px",
-        borderRadius:   14,
-        background:     "rgba(139,92,246,0.09)",
-        border:         "1px solid rgba(139,92,246,0.24)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        cursor:         "default",
-        userSelect:     "none",
-      }}
-    >
-      <span style={{ fontSize: 22, fontWeight: 700, color: "rgba(221,196,255,1)", lineHeight: 1.1 }}>
-        {value}
-      </span>
-      <span style={{ fontSize: 10, color: "rgba(167,139,250,0.72)", marginTop: 5, letterSpacing: "0.07em", textTransform: "uppercase" }}>
-        {label}
-      </span>
-    </motion.div>
-  );
-}
 
 /* ── Orbit ring decoration ───────────────────────────────────────── */
 /* ── Profile Card ────────────────────────────────────────────────── */
@@ -150,59 +119,57 @@ function ProfileCard() {
               pointerEvents: "none",
             }}
           >
-            {/* Light rays */}
+            {/* Soft energy aura layers */}
             <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+              animate={{ scale: [1, 1.06, 1], opacity: [0.35, 0.55, 0.35] }}
+              transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
                 left: "50%",
                 top: "50%",
-                width: "520px",
-                height: "520px",
+                width: "540px",
+                height: "540px",
                 transform: "translate(-50%, -50%)",
-                background: "repeating-conic-gradient(from 0deg, rgba(139,92,246,0.18) 0deg 6deg, rgba(139,92,246,0.0) 6deg 24deg)",
-                opacity: 0.35,
-                filter: "blur(10px)",
-                WebkitMaskImage: "radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 45%, transparent 70%)",
-                maskImage: "radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 45%, transparent 70%)",
+                background:
+                  "radial-gradient(circle at 35% 35%, rgba(167,139,250,0.38) 0%, transparent 58%), radial-gradient(circle at 68% 60%, rgba(139,92,246,0.30) 0%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(109,40,217,0.25) 0%, transparent 70%)",
+                filter: "blur(18px)",
+                mixBlendMode: "screen",
+                opacity: 0.5,
               }}
             />
 
-            {/* Thin glowing ring */}
             <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+              animate={{ scale: [0.98, 1.03, 0.98], opacity: [0.4, 0.65, 0.4] }}
+              transition={{ duration: 6.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
               style={{
                 position: "absolute",
                 left: "50%",
                 top: "50%",
-                width: "430px",
-                height: "430px",
+                width: "380px",
+                height: "380px",
                 transform: "translate(-50%, -50%)",
-                borderRadius: "50%",
-                border: "1px solid rgba(168,85,247,0.7)",
-                boxShadow:
-                  "0 0 12px rgba(139,92,246,0.55), 0 0 28px rgba(109,40,217,0.35), inset 0 0 12px rgba(139,92,246,0.35)",
-                opacity: 0.85,
-              }}
-            />
-
-            {/* Soft inner glow ring */}
-            <motion.div
-              animate={{ rotate: [360, 0] }}
-              transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                width: "360px",
-                height: "360px",
-                transform: "translate(-50%, -50%)",
-                borderRadius: "50%",
-                border: "1px solid rgba(147,197,253,0.28)",
-                boxShadow: "0 0 14px rgba(167,139,250,0.25)",
+                background:
+                  "radial-gradient(closest-side, rgba(196,181,253,0.55) 0%, rgba(139,92,246,0.22) 45%, transparent 72%)",
+                filter: "blur(6px)",
+                mixBlendMode: "screen",
                 opacity: 0.6,
+              }}
+            />
+
+            <motion.div
+              animate={{ scale: [1, 1.02, 1], opacity: [0.2, 0.35, 0.2] }}
+              transition={{ duration: 10.5, repeat: Infinity, ease: "easeInOut", delay: 1.1 }}
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: "620px",
+                height: "620px",
+                transform: "translate(-50%, -50%)",
+                background:
+                  "radial-gradient(circle, rgba(139,92,246,0.18) 0%, rgba(109,40,217,0.08) 45%, transparent 72%)",
+                filter: "blur(26px)",
+                opacity: 0.35,
               }}
             />
 
@@ -224,8 +191,8 @@ function ProfileCard() {
                   width: particle.size,
                   height: particle.size,
                   borderRadius: "50%",
-                  background: "rgba(167,139,250,0.9)",
-                  boxShadow: "0 0 10px rgba(139,92,246,0.7), 0 0 22px rgba(109,40,217,0.45)",
+                  background: "rgba(167,139,250,0.75)",
+                  boxShadow: "0 0 10px rgba(139,92,246,0.55), 0 0 20px rgba(109,40,217,0.35)",
                 }}
               />
             ))}
@@ -309,8 +276,8 @@ function ProfileCard() {
                   <div
                     style={{
                       position: "relative",
-                      width:    "clamp(220px, 34vw, 340px)",
-                      height:   "clamp(220px, 34vw, 340px)",
+                      width:    "clamp(280px, 42vw, 420px)",
+                      height:   "clamp(280px, 42vw, 420px)",
                     }}
                   >
                     {imgError ? (
@@ -335,7 +302,7 @@ function ProfileCard() {
                         fill
                         className="object-cover"
                         priority
-                        sizes="340px"
+                        sizes="420px"
                         onError={() => setImgError(true)}
                       />
                     )}
@@ -432,15 +399,11 @@ function TextPanel() {
   const [hovered, setHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  /* 3D tilt — gentler than profile card (max ±6°) */
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
   const spring = { stiffness: 140, damping: 20, mass: 0.7 };
-  const rotateX  = useSpring(useTransform(rawY, [-0.5, 0.5], [6, -6]),  spring);
-  const rotateY  = useSpring(useTransform(rawX, [-0.5, 0.5], [-6, 6]),  spring);
-  const glareX   = useSpring(useTransform(rawX, [-0.5, 0.5], [0, 100]), spring);
-  const glareY   = useSpring(useTransform(rawY, [-0.5, 0.5], [0, 100]), spring);
-
+  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [6, -6]),  spring);
+  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-6, 6]),  spring);
   const onMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const r = cardRef.current?.getBoundingClientRect();
     if (!r) return;
@@ -452,13 +415,6 @@ function TextPanel() {
     rawX.set(0); rawY.set(0); setHovered(false);
   }, [rawX, rawY]);
 
-  const glare = useTransform(
-    [glareX, glareY],
-    ([x, y]: number[]) =>
-      `radial-gradient(ellipse 70% 60% at ${x}% ${y}%, rgba(255,255,255,0.07) 0%, transparent 65%)`
-  );
-
-  /* staggered name words */
   const nameContainer = {
     hidden: {},
     show: { transition: { staggerChildren: 0.13, delayChildren: 0.4 } },
@@ -470,213 +426,118 @@ function TextPanel() {
   };
 
   return (
-    /* Entrance */
     <motion.div
       initial={{ opacity: 0, y: 36, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0,  scale: 1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-      className="order-2 w-full flex-1 md:order-1"
+      className="order-2 w-full flex-1 md:order-1 text-center md:text-left"
       style={{ perspective: 1000 }}
     >
-      {/* Outer glow — intensifies on hover */}
       <motion.div
-        animate={{
-          boxShadow: hovered
-            ? "0 0 55px 14px rgba(139,92,246,0.22), 0 0 100px 32px rgba(109,40,217,0.10)"
-            : "0 0 30px 6px rgba(139,92,246,0.10), 0 0 60px 16px rgba(109,40,217,0.05)",
-        }}
-        transition={{ duration: 0.45 }}
-        style={{ borderRadius: 24 }}
+        ref={cardRef}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        animate={{ scale: hovered ? 1.015 : 1 }}
+        transition={{ duration: 0.4 }}
+        onMouseMove={onMouseMove}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={onMouseLeave}
       >
-        {/* 3D tilt wrapper */}
-        <motion.div
-          ref={cardRef}
-          style={{ rotateX, rotateY, transformStyle: "preserve-3d", borderRadius: 24 }}
-          animate={{ scale: hovered ? 1.018 : 1 }}
-          transition={{ duration: 0.4 }}
-          onMouseMove={onMouseMove}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={onMouseLeave}
+      {/* Name — word stagger + blur reveal */}
+      <motion.h1
+        variants={nameContainer}
+        initial="hidden"
+        animate="show"
+        className="glow-text mb-3 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0 14px" }}
+      >
+        {["Phan Đỗ", "Hoàng Thao"].map(w => (
+          <motion.span key={w} variants={nameWord} style={{ display: "inline-block" }}>
+            {w}
+          </motion.span>
+        ))}
+      </motion.h1>
+
+      {/* Typewriter role */}
+      <motion.div
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.85, duration: 0.55 }}
+        className="mb-5 md:mb-6"
+        style={{ minHeight: 34, display: "flex", alignItems: "center", justifyContent: "center" }}
+      >
+        <p
+          className="text-base font-medium sm:text-lg md:text-xl"
+          style={{ display: "flex", gap: 3, alignItems: "center" }}
         >
-          {/* Gradient border shell */}
-          <div
+          <span style={{
+            background: "linear-gradient(90deg, #c4b5fd, #a78bfa)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>
+            {role}
+          </span>
+          <motion.span
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ duration: 0.75, repeat: Infinity }}
             style={{
-              position:   "relative",
-              borderRadius: 24,
-              padding:    "1.5px",
-              background: hovered
-                ? "linear-gradient(135deg, rgba(167,139,250,0.60) 0%, rgba(139,92,246,0.30) 40%, rgba(109,40,217,0.20) 70%, rgba(167,139,250,0.55) 100%)"
-                : "linear-gradient(135deg, rgba(139,92,246,0.35) 0%, rgba(109,40,217,0.15) 50%, rgba(167,139,250,0.30) 100%)",
-              transition: "background 0.45s ease",
-              boxShadow:  "inset 0 1px 0 rgba(255,255,255,0.14), 0 24px 60px rgba(0,0,0,0.50)",
+              display: "inline-block", width: 2, height: "1.05em",
+              background: "rgba(167,139,250,0.9)", borderRadius: 1,
+              marginLeft: 2, verticalAlign: "middle",
             }}
-          >
-            {/* Glass surface */}
-            <div
-              style={{
-                position:             "relative",
-                borderRadius:         22,
-                overflow:             "hidden",
-                background:           "linear-gradient(150deg, rgba(18,8,46,0.82) 0%, rgba(8,3,24,0.92) 60%, rgba(14,6,36,0.88) 100%)",
-                backdropFilter:       "blur(32px) saturate(1.7) brightness(1.04)",
-                WebkitBackdropFilter: "blur(32px) saturate(1.7) brightness(1.04)",
-                padding:              "clamp(24px, 4vw, 40px)",
-              }}
-            >
-              {/* Mouse-tracked glare */}
-              <motion.div style={{
-                position: "absolute", inset: 0, zIndex: 1,
-                pointerEvents: "none", background: glare, mixBlendMode: "screen",
-              }} />
+          />
+        </p>
+      </motion.div>
 
-              {/* Top-left static shimmer streak */}
-              <div style={{
-                position: "absolute", top: -40, left: -20,
-                width: 220, height: 120,
-                background: "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 65%)",
-                transform: "rotate(-18deg)", pointerEvents: "none", zIndex: 1,
-              }} />
+      {/* Divider */}
+      <motion.div
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ delay: 0.95, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          height: 1, marginBottom: 20,
+          background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.45) 20%, rgba(167,139,250,0.20) 60%, transparent)",
+        }}
+      />
 
-              {/* Top edge highlight */}
-              <div style={{
-                position: "absolute", top: 0, left: "5%", right: "5%", height: 1,
-                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.16) 30%, rgba(167,139,250,0.40) 50%, rgba(255,255,255,0.16) 70%, transparent)",
-                pointerEvents: "none", zIndex: 2,
-              }} />
+      {/* Bio */}
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.0, duration: 0.6 }}
+        className="mb-6 text-sm leading-relaxed text-purple-200/70 md:mb-7 md:text-base"
+      >
+        Final-year Software Engineering student at FPT University with hands-on
+        SAP experience (ABAP, RAP, Fiori) from OJT at FPT Software. I ship
+        modern frontends with React, Next.js &amp; React Native, and leverage
+        AI-assisted tools to improve productivity across every project.
+      </motion.p>
 
-              {/* ── Content (z-10 above overlays) ── */}
-              <div style={{ position: "relative", zIndex: 10 }}>
-
-                {/* Greeting tag */}
-                <motion.div
-                  initial={{ opacity: 0, y: -12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.55, duration: 0.5 }}
-                  style={{
-                    display: "inline-flex", alignItems: "center", gap: 8,
-                    marginBottom: 20, padding: "5px 14px", borderRadius: 999,
-                    background: "rgba(139,92,246,0.12)",
-                    border: "1px solid rgba(139,92,246,0.30)",
-                    backdropFilter: "blur(10px)",
-                  }}
-                >
-                  <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.10em", color: "rgba(196,181,253,0.88)", textTransform: "uppercase" }}>
-                    Welcome to my portfolio
-                  </span>
-                </motion.div>
-
-                {/* Name — word stagger + blur reveal */}
-                <motion.h1
-                  variants={nameContainer}
-                  initial="hidden"
-                  animate="show"
-                  className="glow-text mb-3 text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl"
-                  style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0 14px" }}
-                >
-                  {["Phan Đỗ", "Hoàng Thao"].map(w => (
-                    <motion.span key={w} variants={nameWord} style={{ display: "inline-block" }}>
-                      {w}
-                    </motion.span>
-                  ))}
-                </motion.h1>
-
-                {/* Typewriter role */}
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.85, duration: 0.55 }}
-                  className="mb-5 md:mb-6"
-                  style={{ minHeight: 34, display: "flex", alignItems: "center", justifyContent: "center" }}
-                >
-                  <p
-                    className="text-base font-medium text-purple-300 sm:text-lg md:text-xl"
-                    style={{ display: "flex", gap: 3, alignItems: "center" }}
-                  >
-                    <span style={{
-                      background: "linear-gradient(90deg, #c4b5fd, #a78bfa)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}>
-                      {role}
-                    </span>
-                    <motion.span
-                      animate={{ opacity: [1, 0, 1] }}
-                      transition={{ duration: 0.75, repeat: Infinity }}
-                      style={{
-                        display: "inline-block", width: 2, height: "1.05em",
-                        background: "rgba(167,139,250,0.9)", borderRadius: 1,
-                        marginLeft: 2, verticalAlign: "middle",
-                      }}
-                    />
-                  </p>
-                </motion.div>
-
-                {/* Divider */}
-                <motion.div
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 1 }}
-                  transition={{ delay: 0.95, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  style={{
-                    height: 1, marginBottom: 20, originX: 0,
-                    background: "linear-gradient(90deg, rgba(139,92,246,0.45), rgba(167,139,250,0.20), transparent)",
-                  }}
-                />
-
-                {/* Bio */}
-                <motion.p
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.0, duration: 0.6 }}
-                  className="mb-6 text-sm leading-relaxed text-purple-200/70 md:mb-7 md:max-w-lg md:text-base"
-                >
-                  Information Technology graduate specializing in SAP ABAP. I also build
-                  modern frontend applications using React, Next.js, and React Native —
-                  crafting clean, interactive, and scalable experiences.
-                </motion.p>
-
-                {/* Stats row */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.05 }}
-                  className="mb-6 flex justify-center gap-3 md:justify-start md:mb-7"
-                >
-                  <StatBadge value="10+" label="Projects"     delay={1.10} />
-                  <StatBadge value="8+"  label="Technologies" delay={1.18} />
-                  <StatBadge value="SAP" label="Certified"    delay={1.26} />
-                </motion.div>
-
-                {/* CTA buttons */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.15, duration: 0.55 }}
-                  className="flex flex-wrap justify-center gap-2 sm:gap-3 md:justify-start"
-                >
-                  <Button href="#projects" variant="primary">
-                    <FolderOpen size={16} />
-                    View Projects
-                  </Button>
-                  <Button href="/cv.pdf" variant="outline">
-                    <Download size={16} />
-                    Download CV
-                  </Button>
-                  <Button href="https://github.com/hoangthao26" variant="outline">
-                    <GithubIcon size={16} />
-                    GitHub
-                  </Button>
-                  <Button href="#contact" variant="ghost">
-                    <Mail size={16} />
-                    Contact Me
-                  </Button>
-                </motion.div>
-
-              </div>{/* /content */}
-            </div>{/* /glass surface */}
-          </div>{/* /border shell */}
-        </motion.div>{/* /tilt */}
-      </motion.div>{/* /glow */}
+      {/* CTA buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.15, duration: 0.55 }}
+        className="flex flex-wrap justify-center gap-2 sm:gap-3 md:justify-start"
+      >
+        <Button href="#projects" variant="primary">
+          <FolderOpen size={16} />
+          View Projects
+        </Button>
+        <Button href="/cv/cv_phandohoangthao.pdf" variant="outline">
+          <Download size={16} />
+          Download CV
+        </Button>
+        <Button href="https://github.com/hoangthao26" variant="outline">
+          <GithubIcon size={16} />
+          GitHub
+        </Button>
+        <Button href="#contact" variant="ghost">
+          <Mail size={16} />
+          Contact Me
+        </Button>
+      </motion.div>
+      </motion.div>{/* /tilt */}
     </motion.div>
   );
 }

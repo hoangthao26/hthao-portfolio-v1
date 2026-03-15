@@ -16,27 +16,27 @@ interface TimelineItem {
 const timeline: TimelineItem[] = [
   {
     type: "education",
-    title: "Bachelor of Information Technology",
+    title: "Bachelor of Software Engineering",
     organization: "FPT University",
-    period: "2021 - 2025",
+    period: "2022 – 2026",
     description:
-      "Studied software engineering with focus on web development and enterprise systems.",
+      "GPA 3.2 / 4.0. Specializing in software engineering with focus on SAP technical development, enterprise systems, and modern frontend frameworks. Received Honorable Student award in Fall 2023, Spring 2024, Summer 2025, and Fall 2025.",
   },
   {
     type: "experience",
-    title: "SAP ABAP Developer",
-    organization: "Company Name",
-    period: "2024 - Present",
+    title: "OJT Trainee — SAP ABAP",
+    organization: "FPT Software",
+    period: "Jan 2025 – May 2025",
     description:
-      "Developing SAP ABAP applications, RAP-based Fiori apps, and CDS view models for business processes.",
+      "Completed SAP ABAP training and ERP development fundamentals. Developed and debugged ABAP reports, ALV reports and forms. Practiced enterprise debugging and development workflows.",
   },
   {
     type: "experience",
-    title: "Frontend Developer",
-    organization: "Freelance / Projects",
-    period: "2023 - Present",
+    title: "Frontend Developer — Hengout",
+    organization: "Startup Project",
+    period: "2025",
     description:
-      "Building modern web and mobile applications using React, Next.js, React Native, and TypeScript.",
+      "Sole frontend developer responsible for the entire mobile UI/UX from Figma design to production. Built the iOS app using React Native, implemented In-App Purchase (IAP), offline-first chat, and deployed to the Apple App Store. Awarded 50,000,000 VND Startup Potential Scholarship.",
   },
 ];
 
@@ -165,7 +165,7 @@ export default function ResumeSection() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <Button href="/cv.pdf" variant="primary">
+          <Button href="/cv/cv_phandohoangthao.pdf" variant="primary">
             <Download size={15} />
             Download CV
           </Button>
@@ -174,7 +174,7 @@ export default function ResumeSection() {
         {/* Timeline */}
         <div className="relative pl-5">
           {/* Vertical line */}
-          <div className="timeline-line absolute left-[19px] top-0 h-full w-px" />
+          <div className="timeline-line absolute left-[40px] top-0 h-full w-px" />
           {timeline.map((item, i) => (
             <TimelineCard key={item.title} item={item} index={i} />
           ))}

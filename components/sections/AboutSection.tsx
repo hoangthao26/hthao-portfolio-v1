@@ -8,27 +8,27 @@ import { GraduationCap, Code2, Layers, Rocket } from "lucide-react";
 const aboutItems = [
   {
     icon: GraduationCap,
-    title: "IT Graduate",
+    title: "Software Engineering Student",
     description:
-      "Recent Information Technology graduate with a strong foundation in software engineering and problem-solving.",
+      "Final-year Software Engineering student at FPT University (2022–2026), GPA 3.2/4.0, with a strong foundation in enterprise systems and modern software development.",
   },
   {
     icon: Layers,
-    title: "SAP Specialist",
+    title: "SAP Technical Developer",
     description:
-      "Specialized in SAP ABAP development, including RAP, CDS Views, UI5, and Fiori applications.",
+      "Specialized in SAP ABAP, RAP, CDS Views, OData, SAP Fiori and SAPUI5. Gained real-world experience through On-the-Job Training at FPT Software (Jan–May 2025).",
   },
   {
     icon: Code2,
     title: "Frontend Developer",
     description:
-      "Experienced in building frontend applications with modern JavaScript frameworks like React, Next.js, and React Native.",
+      "Sole frontend developer on the Hengout iOS app — from Figma design to App Store launch. Builds responsive interfaces with React, Next.js, and React Native.",
   },
   {
     icon: Rocket,
-    title: "Continuous Learner",
+    title: "AI-Augmented Developer",
     description:
-      "Passionate about learning new technologies and building real-world applications that solve meaningful problems.",
+      "Leverages AI-assisted tools (Claude Code, Cursor, OpenAI Codex) to accelerate planning, coding, and problem-solving — staying at the edge of modern development workflows.",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function AboutSection() {
       <div className="relative z-10 w-full mx-auto max-w-6xl">
         <SectionTitle
           title="About Me"
-          subtitle="A brief introduction about who I am and what I do"
+          subtitle="SAP Technical Developer & Frontend Engineer"
         />
 
         <div className="grid gap-5 sm:grid-cols-2">
